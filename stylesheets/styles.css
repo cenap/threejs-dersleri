@@ -1,4 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
+@import url(https://fonts.googleapis.com/css?family=Roboto&subset=latin,latin-ext);
+
 html {
   background: #6C7989;
   background: #6c7989 -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #6c7989), color-stop(100%, #434b55)) fixed;
@@ -12,14 +13,14 @@ html {
 body {
   padding: 50px 0;
   margin: 0;
-  font: 14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 14px/1.5 'Roboto', sans-serif;
   color: #555;
   font-weight: 300;
   background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAeCAYAAABNChwpAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNXG14zYAAAAUdEVYdENyZWF0aW9uIFRpbWUAMy82LzEygrTcTAAAAFRJREFUSIljfPDggZRf5RIGGNjUHsNATz6jXmSL1Kb2GLiAX+USBnrymRgGGDCORgFmoNAXjEbBaBSMRsFoFIxGwWgUjEbBaBSMRsFoFIxGwWgUAABYNujumib3wAAAAABJRU5ErkJggg==') fixed;
 }
 
 .wrapper {
-  width: 640px;
+  width: 960px;
   margin: 0 auto;
   background: #DEDEDE;
   -webkit-border-radius: 8px;
@@ -139,7 +140,7 @@ header ul:before {
   box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0, inset rgba(255, 255, 255, 0.7) 0 -1px 0;
 }
 header ul li {
-  width: 79px;
+  width: 95px;
   float: left;
   border-right: 1px solid #3A7CBE;
   height: 38px;
@@ -148,12 +149,12 @@ header ul li.single {
   border: none;
 }
 header ul li + li {
-  width: 78px;
+  width: 94px;
   border-left: 1px solid #8BBEF3;
 }
 header ul li + li + li {
   border-right: none;
-  width: 79px;
+  width: 95px;
 }
 header ul a {
   line-height: 1;
@@ -290,16 +291,11 @@ footer {
   padding: 20px 0 0;
   color: #ccc;
   overflow: hidden;
+  text-align: center;
 }
 footer a {
   color: #fff;
   font-weight: bold;
-}
-footer p {
-  float: left;
-}
-footer p + p {
-  float: right;
 }
 
 @media print, screen and (max-width: 740px) {
