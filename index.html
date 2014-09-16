@@ -7,7 +7,13 @@
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="javascripts/syntaxhighlighter_3.0.83/styles/shCore.css">
+    <link rel="stylesheet" href="javascripts/syntaxhighlighter_3.0.83/styles/shThemeDefault.css">
     <script src="javascripts/scale.fix.js"></script>
+    <script src="javascripts/syntaxhighlighter_3.0.83/scripts/shCore.js"></script>    
+    <script src="javascripts/syntaxhighlighter_3.0.83/scripts/shBrushXml.js"></script>
+    <script src="javascripts/syntaxhighlighter_3.0.83/scripts/shBrushJScript.js"></script>
+    <script src="javascripts/syntaxhighlighter_3.0.83/scripts/shBrushCss.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
     <!--[if lt IE 9]>
@@ -26,18 +32,120 @@
           <li><a href="https://github.com/cenap/threejs-dersleri">View On <strong>GitHub</strong></a></li>
         </ul>
       </header>
-      <section>
-        <h1>
-<a name="threejs-dersleri" class="anchor" href="#threejs-dersleri"><span class="octicon octicon-link"></span></a>threejs-dersleri</h1>
+      <section>        
+        <h1>Birinci Ders: İlk threejs Uygulamamız</h1>
+        <p>Merhaba</p>
+        <hr/>
 
-<p>Threejs konulu dersler</p>
+        İlkönce iskelet HTML kodumuzu yazarak başlayalım:
+
+        <script type="syntaxhighlighter" class="brush: js"><![CDATA[
+          <html>
+              <head>
+                <title>İlk Three.js Uygulamamız</title>
+                <link rel="stylesheet" href="css/three.css">
+              </head>
+              <body>
+                <div id="evsahibi"></div>
+              </body>
+              <script src="js/three.js"/>
+              <script src="js/bir.js"/>
+          </html>          
+
+        ]]></script>
+
+        <p>
+          Görüldüğü gibi biri css, diğer ikisi javascript dosyası olmak üzere üç ekstra dosyaya referans verdik. Bunlardan three.js dosyası bize asıl kütüphaneyi sağlıyor. Diğerlerini biz kendimiz oluşturuyoruz. 
+        </p>
+
+        <p>
+          bir.js dosyamızın içeriği şöyle:
+        </p>
+
+
+
+        <pre class="brush: js">
+          var sahne = new THREE.Scene();
+          var evsahibi = document.getElementById( 'evsahibi' );
+          var genişlik   = evsahibi.clientWidth ; //window.innerWidth;
+          var yükseklik = evsahibi.clientHeight; //window.innerHeight;
+          var en_yakın = 0.1;
+          var en_uzak = 1000;
+          var bakış_açısı = 75;
+          var aspect_ratio = genişlik/yükseklik;
+          var kamera = new THREE.PerspectiveCamera(bakış_açısı, aspect_ratio, en_yakın, en_uzak);
+
+          var renderer = new THREE.WebGLRenderer();    
+          renderer.setSize(genişlik, yükseklik);
+          //document.body.appendChild(renderer.domElement);
+
+          evsahibi.appendChild( renderer.domElement ); 
+
+          var genel_ışık = new THREE.AmbientLight( 0x202020 ); // soft white light
+          sahne.add( genel_ışık );
+
+          var ışık = new THREE.PointLight(0xffffff);
+          ışık.position.set(-250,250,250);
+          sahne.add(ışık);
+
+          var kutu_geometrisi = new THREE.BoxGeometry(2,2,2);
+          var küp_materyali = new THREE.MeshPhongMaterial({color: 0x00ff00});
+          var küp = new THREE.Mesh(kutu_geometrisi, küp_materyali);
+          sahne.add(küp);
+
+          var küre_geometrisi =  new THREE.SphereGeometry( 1.3, 32, 16 );
+          var küre_materyali = new THREE.MeshPhongMaterial({color: 0xffff00});
+          var küre = new THREE.Mesh(küre_geometrisi, küre_materyali);
+          sahne.add(küre);
+
+          kamera.position.z = 5;
+
+          var render = function () {
+          requestAnimationFrame(render);
+
+          küp.rotation.x += 0.01;
+          küp.rotation.y += 0.01;
+
+          renderer.render(sahne, kamera);
+          };
+
+          render();
+      
+      
+        </pre>
+
+        <p>
+          "three.css" dosyamız da sıradan, basit bir CSS dosyası:          
+        </p>
+
+        <pre class="brush: css">
+          body {
+            background-color:#333;
+          }
+
+          canvas { 
+            width: 100%; 
+            height: 100% 
+          }
+
+          #evsahibi {
+            margin:auto;
+            width:400px; 
+            height:400px;
+          }          
+        </pre>
+
       </section>
     </div>
     <footer>
-      <p>Project maintained by <a href="https://github.com/cenap">cenap</a></p>
+      <p><a href="https://github.com/cenap">cenap</a></p>
       <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
     </footer>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
   </body>
 </html>
+
+<script type="text/javascript">
+     SyntaxHighlighter.all()
+</script>
